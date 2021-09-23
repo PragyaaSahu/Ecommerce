@@ -1,0 +1,25 @@
+<center><h4><u>Welcome Admin!</u></h4></center>
+
+<h1>Users</h1>
+<table class="table table-bordered">
+	<thead class="table-dark">
+		<tr>
+		  <th>Email</th>
+		  <th>Role</th>
+		</tr>
+	</thead>
+	<tbody>
+	 <% @users.each do |user|%>
+		<tr>
+		  <% unless current_user==user %>
+			<td><%=user.email%></td>
+			<% if user.has_role?(:supplier) %>
+			   <td>Supplier</td>
+			<%else%>
+			   <td>User</td>
+			<%end%>
+		  <%end%>
+	   </tr>
+	 <%end%>
+	</tbody>
+</table>

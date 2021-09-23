@@ -1,0 +1,38 @@
+ <%if @products.present? %>
+  <% @sum = 0 %>
+    <div class="container">
+      <div class="row mb-5">
+      <% @products.each do |product| %>
+      <%@sum+=product.price*@session_carts[product.id.to_s]["quantity"].to_f%>
+        <div class="col-md-4">
+        <div class="row">
+          <div class="card justify-content-center" style="width: 25rem; background-color: #122b48;">
+              <div class="card-img-top"><%= image_tag(product.picture_url, :width=>250, :height=>150) %></div>
+              <div class="card-body">
+                <h5 class="card-title" style="font-family: fantasy; color: white"><b><%= product.name%></b></h5>
+                <h6 class="card-subtitle mb-2"style="color: white"><b>Price: <%=product.price%></b></h6>
+                <p class="card-text" style="color: #e2e2e2"><%= product.description%></p>
+                <%= form_with model: (product), url: customer_save_quantity_path, method: :post do|form| %>
+                          <div>
+                          <%= form.hidden_field :id ,value: product.id %>
+                          <%= form.label :Quantity, style:"color:#e2e2e2" %>
+                          <%= form.number_field :qty, value: @session_carts[product.id.to_s]["quantity"], min: 1, max: 50%>
+                          </div>
+                          <p>
+                            <%= form.submit "Save", class:"btn btn-primary btn-sm"%>
+                          </p>
+                <% end %>
+                <h6 class="card-subtitle mb-2" style="color: white"><b>Total: <%=product.price*@session_carts[product.id.to_s]["quantity"].to_f%></b></h6>
+                <%= link_to "cancel", customer_remove_product_path(id: product.id),data: {confirm: "Are you sure?" }, type:"button",class:"btn btn-md",style:"background-color: white; margin-bottom: 10px; color: #122b48;" %> 
+              </div>
+          </div>
+        </div>
+        </div>
+      <% end %>  
+      </div>
+    </div>
+    <h4>Total Amount: <%= @sum %></h4>
+    <%= link_to 'Buy', new_user_session_path,type:"button",class:"btn btn-light",style:"background-color:#122b48;color: white;"  %>
+  <%else%>
+     <h2>Your cart is empty!</h2>
+  <%end%>    

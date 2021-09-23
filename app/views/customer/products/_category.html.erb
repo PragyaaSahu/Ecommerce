@@ -1,0 +1,41 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<span style="font-size:30px;cursor:pointer; margin-top: -50px" onclick="openNav() ">&#9776; Category</span>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="panel-group" id="accordion"> <!-- accordion 1 -->
+   <div class="panel ">
+      <% @categories.each do |category|%>
+        <% unless category.parent_id.present? %>
+          <div class="panel-heading" style="background-color: #122b48"> <!-- panel-heading -->
+            <h4 class="panel-title"> <!-- title 1 -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#accordion<%=category.id%>">
+              <%= category.name%>
+            </a>
+           </h4>
+          </div>
+    <!-- panel body -->
+        <div id="accordion<%=category.id%>" class="panel-collapse collapse out">
+          <div class="panel-body" style="background-color: #0e4464">
+           <% category.subcategories.each do |subcategory|%>
+              <%= link_to (subcategory.name), customer_product_path(subcategory)%>
+           <%end%>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+  </div>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>

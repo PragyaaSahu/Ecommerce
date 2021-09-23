@@ -1,0 +1,38 @@
+<center>
+<%unless @category.parent_id.present? %>
+    <h1 align="text-center"><u><%= @category.name %></u></h1>
+    <h4>Add Sub-Category</h4>
+    <div>
+       <%= render 'sub_category', subcategory: @sub_category, parent_id: @category.id %>
+    </div>
+</center>
+<% if @category.subcategories.present?%>
+    <table class="table table-bordered">
+  		<thead class="table-dark">
+     		<tr>
+       		   <th align="text-center">Category</th>
+             <th align="text-center">Delete</th>
+        </tr>
+ 		</thead>
+ 		<tbody align="text-center">
+  			<% @category.subcategories.each do |subcategory|%>
+  			  <tr>
+				    <td><%= subcategory.name %></td>
+            <td><%= link_to "Destroy", admin_category_path(subcategory.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+    		<% end %>
+    	</tbody>
+    </table>
+  <%end%>
+<% else %>
+   <strong>Name: </strong>
+   <%= @category.name %>
+<% end %>
+
+
+
+
+
+

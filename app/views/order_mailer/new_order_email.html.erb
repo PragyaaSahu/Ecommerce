@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p> Your Order is out for delivery <%= @order.name %>!</p>
+    <p>
+    Order details<br>
+    --------------------------
+    </p>
+    <p>Name: <%= @order.name %></p>
+    <p>Email: <%= @order.email %></p>
+    <p>Address: <%= @order.address %></p>
+    <p>Phone: <%= @order.phone %></p>
+    <p>
+    Message:<br>
+    ----------
+    </p>
+    <p>This Order will be delivered within next 7 days.<br> Thanks & Regards<br> Shop-WoW</p>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<center>
+<% if reviews.present? %>
+<table class="table table-bordered table-responsive">
+  	<thead class="table-dark">
+     		<tr>
+       		   <th align="text-center">User</th>
+             <th align="text-center">Review</th>
+        </tr>
+ 		</thead>
+    <% reviews.each do|review| %>
+ 		<tbody align="text-center">
+  			  <tr>
+				    <td class="w-100"><%= review.user_name %></td>
+            <td><%= review.comments%></td>
+          </tr>
+    </tbody>
+    <%end%>
+</table>
+<%end%>
+</center>
+

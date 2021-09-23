@@ -1,0 +1,41 @@
+<% @carts.each do|cart| %>
+    <% if cart.line_items.present? %>
+        <% @sum = 0%>
+        <h1 style="text-align: center;">Cart</h1>
+        <div class="container">
+          <div class="row mb-5">
+          <% cart.line_items.each do |lineitem| %>
+          <% @sum+=lineitem.price*lineitem.quantity.to_i%>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="card justify-content-center" style="width: 25rem; background-color: #122b48;">
+                      <div class="card-img-top" ><%= image_tag(lineitem.product.picture_url, :width => 250, :height => 150) %></div>
+                      <div class="card-body">
+                          <h5 class="card-title" style="font-family: fantasy; color: white"><b><%= lineitem.product.name%></b></h5>
+                          <h6 class="card-subtitle mb-2 "style="color: white"><b>Price: ₹<%= lineitem.price%></b></h6>
+                          <p class="card-text"style="color: #e2e2e2"><%= lineitem.product.description%></p>
+                        <%= form_with model: [:customer, lineitem], url: customer_save_quantity_path, method: :post do|form| %>
+                          <div>
+                          <%= form.hidden_field :id ,value: lineitem.id %>
+                          <%= form.label :Quantity, style:"color: #e2e2e2" %>
+                          <%= form.number_field :quantity, min: 1, max: 50%>
+                          </div>
+                          <p>
+                            <%= form.submit "Save", class:"btn btn-primary btn-sm"%>
+                          </p>
+                        <% end %>
+                        <h6 class="card-subtitle mb-2 " style="color: white"><b>Total: ₹<%= lineitem.price*lineitem.quantity.to_i %></b></h6>
+                        <%= link_to 'Cancel', customer_remove_product_path(lineitem_id:lineitem.id,productid:lineitem.product.id), data: { confirm: "Are you sure?" }, type:"button",class:"btn btn-md",style:"background-color: white; margin-bottom: 10px; color: #122b48;" %>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          </div>
+        </div>
+        <h4>Total Amount: <%= @sum %></h4>
+       <%= link_to 'Buy', new_customer_order_path(cart_id:cart.id, user_id:cart.user_id, total:@sum),type:"button",class:"btn btn-light",style:"background-color:#122b48;color: white;"  %>
+    <%else%>
+        <h2>Your cart is empty!</h2>
+    <%end%>
+  <%end%>

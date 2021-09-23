@@ -1,0 +1,15 @@
+current directory: /home/cis/Documents/Ecommerce/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.5/ext/bootsnap
+/home/cis/.rvm/rubies/ruby-2.7.0/bin/ruby -I /home/cis/.rvm/rubies/ruby-2.7.0/lib/ruby/2.7.0 -r ./siteconf20210906-31554-1af2mwu.rb extconf.rb
+creating Makefile
+
+current directory: /home/cis/Documents/Ecommerce/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.5/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /home/cis/Documents/Ecommerce/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.5/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /home/cis/Documents/Ecommerce/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.5/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -m 0755 bootsnap.so ./.gem.20210906-31554-1opy8ht/bootsnap

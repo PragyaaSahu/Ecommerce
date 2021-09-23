@@ -1,0 +1,12 @@
+<%= form_with model:[:admin, subcategory] do |form| %>
+<p>
+	<%= form.hidden_field :parent_id, value: "#{@category.id}" %>
+</p>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.submit "add Sub-category" %>
+  </p>
+<% end %>

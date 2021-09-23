@@ -1,0 +1,19 @@
+<h1>Category</h1>
+<table class="table table-bordered">
+  <thead class="table-light">
+     <tr>
+       <th>Category</th>
+       <th>Sub-Categories</th>
+     </tr>
+ </thead>
+ <tbody>
+  <% @categories.each do |category|%>
+  <% unless category.parent_id.present? %>
+    <tr>
+		  <td><%=category.name %></td>
+      <td><%= link_to 'View', supplier_category_path(category)%>
+	  </tr>
+    <% end %>
+  <%end%>
+ </tbody>
+</table>

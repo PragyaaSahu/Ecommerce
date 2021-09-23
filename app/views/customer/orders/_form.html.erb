@@ -1,0 +1,50 @@
+<%= form_with model: [:customer, @order] do |form| %>
+ 
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@order.errors.count, "error") %> prohibited
+        this product from being saved:
+      </h2>
+      <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <p>
+    <%= form.hidden_field :cart_id, value: cart.id %> 
+    <%=form.hidden_field :total, value: total%>   
+  </p>
+
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </p>
+
+  <p>
+    <%= form.label :phone%>
+    <%= form.text_field :phone %>
+    
+  </p>
+ 
+  <p>
+    <%= form.label :address%><br>
+    <%= form.text_area :address %>
+    
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 

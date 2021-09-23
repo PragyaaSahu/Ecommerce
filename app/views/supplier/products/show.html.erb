@@ -1,0 +1,13 @@
+<center>
+
+<div class="card justify-content-center" style="width: 25rem; background-color: #122b48;">
+  <div class="card-img-top" ><%= image_tag(@product.picture_url, :width => 250, :height => 150) %></div>
+  <div class="card-body">
+    <h5 class="card-title" style="font-family: fantasy; color: white"><b><%= @product.name%></b></h5>
+    <h6 class="card-subtitle mb-2 text-muted" style="color: white">Price: <%= @product.price%></h6>
+    <p class="card-text" style="color: #e2e2e2"><%= @product.description%></p>
+    <%= link_to 'Back', supplier_products_path, class:"btn btn-sm",style:"background-color: white; margin-bottom: 10px; color: #122b48;margin-right: 10px" %>|<%= link_to 'Edit', edit_supplier_product_path(@product),class:"btn btn-sm",style:"background-color: white; margin-bottom: 10px; color: #122b48; margin-right: 10px" %><td><%= link_to 'Destroy', supplier_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-sm",style:"background-color: white; margin-bottom: 10px; color: #122b48;" %></td>
+    
+  </div>
+</div>
+</center>

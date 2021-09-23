@@ -1,0 +1,9 @@
+development:
+  cloud_name: "mycloud01abc"
+  api_key: "162979129859112"
+  api_secret: "ynxrfjXcD1NjQ1kdXn016O8WyBs"
+
+production:
+  cloud_name: "mycloud01abc"
+  api_key: "162979129859112"
+  api_secret: "ynxrfjXcD1NjQ1kdXn016O8WyBs"

@@ -1,0 +1,35 @@
+<%= search_form_for @q, url:customer_products_path do |f| %>
+<div style="margin-left: 800px">
+  <%= f.label :product_cont %>
+  <%= f.search_field :name_cont %>
+</div>
+<% end %>
+
+<%= render 'category' %>
+ 
+<center>
+<h1 style="text-align: center;">Available Products!</h1>
+  <div class="container">
+    <div class="row mb-5">
+      <% @products.each do |product| %>
+        <div class="col-md-4 mb-lg-5 ">
+          <div class="row">
+            <div class="card justify-content-center" style="width: 25rem; background-color: #122b48;">
+              <div class="card-img-top" ><%= image_tag(product.picture_url, :width => 250, :height => 150) %></div>
+              <div class="card-body">
+                  <h5 class="card-title" style="font-family: fantasy; color: white"><b><%= product.name%></b></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"style="color: white"><b>Price: ₹<%= product.price%></b></h6>
+                  <p class="card-text" style="color: #e2e2e2"><%= product.description%></p>
+                  <%= link_to 'Rate Product', new_customer_review_path(id: product.id), style:"color: white" %><br>
+                  <%= link_to 'Add to Cart', customer_carts_path(id: product.id), method: :post,class:"btn btn-sm",style:"
+                      background-color: white; margin-bottom: 10px; color: #122b48;" %> 
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %> 
+    </div>
+  </div>
+<%= paginate @products %> 
+</center>
+
